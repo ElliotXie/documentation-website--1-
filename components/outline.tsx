@@ -2,6 +2,16 @@
 
 import { useEffect, useState } from "react"
 import { cn } from "@/lib/utils"
+import { useTheme } from "next-themes"
+import { Button } from "@/components/ui/button"
+import { Moon, Sun, Github, FileText } from "lucide-react"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import Link from "next/link"
 
 interface Heading {
   id: string
@@ -12,6 +22,9 @@ interface Heading {
 export function Outline() {
   const [headings, setHeadings] = useState<Heading[]>([])
   const [activeId, setActiveId] = useState<string>("")
+  const { setTheme } = useTheme()
+  const githubRepoUrl = "https://github.com/ElliotXie/CASSIA"
+  const biorxivUrl = "https://www.biorxiv.org/content/10.1101/2024.12.04.626476v2"
 
   useEffect(() => {
     // Function to collect headings
@@ -82,40 +95,70 @@ export function Outline() {
   return (
     <div className="hidden lg:block">
       <div className="fixed right-8 top-20 w-56">
-        <div className="text-sm font-medium text-primary/80">On this page</div>
-        <ul className="mt-2 space-y-1 text-sm">
-          {headings.map((heading) => (
-            <li key={heading.id} style={{ paddingLeft: `${(heading.level - 1) * 12}px` }}>
-              <a
-                href={`#${heading.id}`}
-                className={cn(
-                  "block py-1 text-muted-foreground transition-colors hover:text-foreground no-underline",
-                  activeId === heading.id && "text-primary font-medium",
-                )}
-                onClick={(e) => {
-                  e.preventDefault()
-                  const element = document.getElementById(heading.id)
-                  if (element) {
-                    // Smooth scroll to the element with offset
-                    window.scrollTo({
-                      top: element.offsetTop - 80,
-                      behavior: "smooth",
-                    })
-                    // Update URL hash without jumping
-                    window.history.pushState(null, "", `#${heading.id}`)
-                    setActiveId(heading.id)
+        <div className="mb-4 flex items-center justify-start gap-2">
+          <Link href={biorxivUrl} target="_blank" rel="noopener noreferrer">
+            <Button variant="outline" size="icon" aria-label="bioRxiv Paper">
+              <FileText className="h-[1.2rem] w-[1.2rem]" />
+            </Button>
+          </Link>
+          <Link href={githubRepoUrl} target="_blank" rel="noopener noreferrer">
+            <Button variant="outline" size="icon" aria-label="GitHub Repository">
+              <Github className="h-[1.2rem] w-[1.2rem]" />
+            </Button>
+          </Link>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" size="icon">
+                <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                <span className="sr-only">Toggle theme</span>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem onClick={() => setTheme("light")}>
+                Light
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setTheme("dark")}>
+                Dark
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
 
-                    // Force focus on the element for accessibility
-                    element.tabIndex = -1
-                    element.focus({ preventScroll: true })
-                  }
-                }}
-              >
-                {heading.text}
-              </a>
-            </li>
-          ))}
-        </ul>
+        {headings.length > 0 && (
+          <>
+            <div className="text-sm font-medium text-primary/80">On this page</div>
+            <ul className="mt-2 space-y-1 text-sm">
+              {headings.map((heading) => (
+                <li key={heading.id} style={{ paddingLeft: `${(heading.level - 1) * 12}px` }}>
+                  <a
+                    href={`#${heading.id}`}
+                    className={cn(
+                      "block py-1 text-muted-foreground transition-colors hover:text-foreground no-underline",
+                      activeId === heading.id && "text-primary font-medium",
+                    )}
+                    onClick={(e) => {
+                      e.preventDefault()
+                      const element = document.getElementById(heading.id)
+                      if (element) {
+                        window.scrollTo({
+                          top: element.offsetTop - 80,
+                          behavior: "smooth",
+                        })
+                        window.history.pushState(null, "", `#${heading.id}`)
+                        setActiveId(heading.id)
+                        element.tabIndex = -1
+                        element.focus({ preventScroll: true })
+                      }
+                    }}
+                  >
+                    {heading.text}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
       </div>
     </div>
   )
