@@ -89,7 +89,12 @@ export default function DocPageClient({ params, doc }: DocPageClientProps) {
       return <p>{children}</p>
     },
     code: ({ node, inline, className, children, ...props }: CodeProps) => {
-      if (inline) {
+      // More robust check for inline code: check if the node's parent is NOT <pre>
+      // The `inline` prop can sometimes be unreliable depending on plugins/markdown structure
+      const isInline = !node?.position?.start.line === node?.position?.end.line || !className?.startsWith("language-");
+
+      if (isInline) {
+        // Render simple inline code
         return (
           <code className="bg-muted px-1.5 py-0.5 rounded text-sm font-medium text-foreground" {...props}>
             {children}
@@ -97,6 +102,7 @@ export default function DocPageClient({ params, doc }: DocPageClientProps) {
         )
       }
 
+      // Handle block code (presumed if not inline)
       const match = /language-(\w+)/.exec(className || "")
       const language = match ? match[1] : ""
       const content = String(children)

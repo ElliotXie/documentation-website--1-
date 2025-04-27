@@ -15,6 +15,22 @@ runCASSIA_pipeline(
 )
 ```
 
+
+### Add CASSIA results back to the seurat object
+```R
+seurat_corrected <- add_cassia_to_seurat(
+  seurat_obj = seurat_corrected, # The seurat object you want to add the CASSIA results to
+  cassia_results_path = "/FastAnalysisResults_scored.csv", #where the scored results saved, specify the path
+  cluster_col = "celltype", # Column in Seurat object with cell types
+  cassia_cluster_col="True Cell Type" # Column in the scored results with the true cell types
+)
+
+# This will add six new columns to the seurat object:the genearl celltype, all three subcelltypes, the mostly likely celltype, the second likely celltype, the third likely celltype, and mixed celltype,and the quality score of each cell type.
+```
+
+
+
+
 ### Full Parameter Options
 ```R
 runCASSIA_pipeline(
@@ -40,6 +56,7 @@ runCASSIA_pipeline(
     additional_info = NULL    # Additional context information
 )
 ```
+
 
 ### Output Files
 The pipeline generates:

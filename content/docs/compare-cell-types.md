@@ -21,45 +21,24 @@ compareCelltypes(
 
 ## Parameter Details
 
-1. **tissue**: 
-   - Type: character string
-   - Specifies the tissue source of your data
-   - Example: "large intestine", "small intestine", "brain"
+- `tissue`: Specifies the tissue source of your data (e.g., "large intestine", "small intestine", "brain")
 
-2. **celltypes**: 
-   - Type: character vector
-   - List of cell types you want to compare
-   - Maximum recommended: 4-5 cell types for optimal results
-   - Example: `c("Plasma Cells", "IgA-secreting Plasma Cells", "IgG-secreting Plasma Cells")`
+- `celltypes`: List of cell types you want to compare (maximum recommended: 4-5). Example: `c("Plasma Cells", "IgA-secreting Plasma Cells", "IgG-secreting Plasma Cells")`
 
-3. **marker**: 
-   - Type: character string
-   - Comma-separated list of marker genes
-   - Can include both up and down-regulated markers
-   - Example: "IGLL5, IGLV6-57, JCHAIN, FAM92B, IGLC3"
+- `marker`: Comma-separated list of marker genes (e.g., "IGLL5, IGLV6-57, JCHAIN, FAM92B, IGLC3")
 
-4. **species**: 
-   - Type: character string
-   - Options: "human" or "mouse"
-   - Specifies the species origin of your data
+- `species`: Specifies the species origin of your data
 
-5. **output_file**: 
-   - Type: character string
-   - Name for the output file (without extension)
-   - Example: "plasma_cell_subtype"
+- `output_file`: Name for the output file (without extension)
 
-6. **model_list**: 
-   - Type: vector of strings
-   - Optional parameter
-   - Default models (if none provided):
-     ```r
-     model_list = c(
-         "anthropic/claude-3.5-sonnet",  # Anthropic's latest model
-         "openai/o1-mini",              # OpenAI's model
-         "google/gemini-pro-1.5"        # Google's model
-     )
-     ```
-   - These default models are selected as they represent state-of-the-art LLMs
+- `model_list`: Optional parameter. Default models (if none provided) are state-of-the-art LLMs:
+  ```r
+  model_list = c(
+      "anthropic/claude-3.5-sonnet",  # Anthropic's latest model
+      "openai/o1-mini",              # OpenAI's model
+      "google/gemini-pro-1.5"        # Google's model
+  )
+  ```
 
 
 
