@@ -13,13 +13,12 @@ Annotation Boost is an advanced validation tool that enhances annotation confide
 
 1. **Input Data**:
    - Full results CSV from CASSIA batch analysis
-   - Original marker gene file (Seurat output or custom marker file)
+   - Original marker gene file (Seurat output or custom comlete marker file that contains all the statistics.)
    - Cluster context information
    - Specific cluster identifier
 
 2. **Model Configuration**:
    - Recommended: `anthropic/claude-3.5-sonnet` via OpenRouter
-   - Alternative models may be used but may provide different levels of detail
 
 ### Running Annotation Boost
 
@@ -65,10 +64,9 @@ runCASSIA_validatorplus(
 ### Troubleshooting
 
 1. **Low Confidence Results**:
-   - Increase `num_iterations`
+   - Review the quality of the clusters, in terms of doublet, mixed, or low quality clusters.
    - Review marker gene quality
 
 3. **Inconsistent Results**:
    - Check marker gene consistency
    - Verify input data quality
-   - Consider biological variability

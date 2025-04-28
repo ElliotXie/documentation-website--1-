@@ -2,7 +2,7 @@
 title: Fast Mode
 ---
 
-CASSIA's Fast Mode offers a streamlined, one-line solution for running the complete analysis pipeline. This mode combines annotation, scoring, and annotation boost in a single function call, using optimized default parameters.
+CASSIA's Fast Mode offers a streamlined, one-line solution for running the complete analysis pipeline. This mode combines annotation, scoring, and annotation boost for correcting low quality annotations in a single function call, using optimized default parameters.
 
 ### Basic Usage
 ```R
@@ -46,10 +46,10 @@ runCASSIA_pipeline(
     # Model configurations
     annotation_model = "gpt-4o",             # Model for annotation
     annotation_provider = "openai",         # Provider for annotation
-    score_model = "anthropic/claude-3.5-sonnet",  # Model for scoring
+    score_model = "anthropic/claude-3.5-sonnet",  # Model for scoring, it is highly recommended to use a different and more powerful model for scoring
     score_provider = "openrouter",         # Provider for scoring
-    annotationboost_model="anthropic/claude-3.5-sonnet", #Model for annotation boost
-    annotationboost_provider="openrouter", #Provider for annotation boost
+    annotationboost_model="anthropic/claude-3.5-sonnet", # Model for annotation boost
+    annotationboost_provider="openrouter", # Provider for annotation boost
     
     # Analysis parameters
     score_threshold = 75,     # Minimum acceptable score
@@ -59,10 +59,10 @@ runCASSIA_pipeline(
 
 
 ### Output Files
-The pipeline generates:
-1. Initial annotation results
-2. Quality scores and reasoning
-3. Summary report
+The pipeline generates a folder which contains the following files:
+1. Annotation results csv files
+2. Scored results csv files
+3. Basic CASSIA report
 4. Annotation boost report
 
 ### Performance Tips

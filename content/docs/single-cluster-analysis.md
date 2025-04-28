@@ -2,13 +2,14 @@
 title: Single Cluster Analysis
 ---
 
-The runCASSIA function analyzes a single cluster of marker genes to identify the cell type. Keep in mind that CASSIA is designed to handle multiple clusters at once, so this serves as a quick method for analyzing a single cluster.
+The `runCASSIA` function analyzes a single cluster of marker genes to identify the cell type.
+Note that CASSIA is designed to handle multiple clusters at once, this function is specifically designed for users who only have one cluster to analyze.
 
 ### Example
 
 If you're using OpenRouter as your provider, you can specify models like `"openai/gpt-4o-2024-11-20"` or `"anthropic/claude-3.5-sonnet"`. Here are some model recommendations:
 
-- **Claude 3.5 Sonnet** (Best performance, slightly more expensive)
+- **Claude 3.5 Sonnet** (Best performance)
     - Model ID: `"anthropic/claude-3.5-sonnet"`
 - **GPT-4o** (Balanced option)
     - Model ID: `"openai/gpt-4o-2024-11-20"`

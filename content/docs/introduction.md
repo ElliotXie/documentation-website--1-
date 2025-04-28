@@ -2,7 +2,7 @@
 title: Introduction
 ---
 
-Welcome to the CASSIA R tutorial! This guide will walk you through using the CASSIA package in R for cell type annotation using Large Language Models (LLMs). 
+Welcome to the CASSIA R tutorial! This guide will walk you through using the CASSIA package in R for cell type annotation. 
 
 
 ## What is CASSIA?

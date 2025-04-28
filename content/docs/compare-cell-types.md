@@ -34,7 +34,7 @@ compareCelltypes(
 - `model_list`: Optional parameter. Default models (if none provided) are state-of-the-art LLMs:
   ```r
   model_list = c(
-      "anthropic/claude-3.5-sonnet",  # Anthropic's latest model
+      "anthropic/claude-3.5-sonnet",  # Anthropic's  model
       "openai/o1-mini",              # OpenAI's model
       "google/gemini-pro-1.5"        # Google's model
   )
