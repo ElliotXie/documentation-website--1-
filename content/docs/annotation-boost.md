@@ -36,7 +36,7 @@ cluster_info <- "Human PBMC"
 target_cluster = "CD4+ T cell"
 
 # Run validation
-runCASSIA_validatorplus(
+runCASSIA_annotationboost(
 
     # Required parameters
     full_result_path = "cell_type_analysis_results.csv",
